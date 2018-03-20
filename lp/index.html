@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="">
+
+    <title>Landing Page</title>
+
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <main role="main">
+      <section class="jumbotron text-center" >
+        <div class="container">
+          <h2 class="jumbotron-heading">End to end big data in a massively scalable supercomputing platform</h2>
+          
+        </div>
+      </section>
+      <div class="py-5 bg-light">
+        <div class="container">
+          <img src="assets/img/hpcc.png" class="logo">
+          <div class="row" style="position: relative; top: -90px">
+            <div class="col-md-10 mx-auto order-md-1 info-form">
+              <h4 class="mb-2">Subscibe to the Newsletter</h4>
+              <form id="info" method="POST" action="success.html">
+                <div class="row">
+                  <div class="col-6 col-md-6 mb-2">
+                    <label for="firstName">First name<span class="required">*</span></label>
+                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                      Valid first name is required.
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-6 mb-2">
+                    <label for="lastName">Last name<span class="required">*</span></label>
+                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                    <div class="invalid-feedback">
+                      Valid last name is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="mb-2">
+                  <label for="email">Email<span class="required">*</span></label>
+                  <input type="email" class="form-control" id="email" placeholder="you@example.com" required="">
+                  <div class="invalid-feedback">
+                    Please enter a valid email address.
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-6 col-md-6 mb-2">
+                    <label for="country">Country<span class="required">*</span></label>
+                    <select class="custom-select d-block w-100" id="country" required="">
+                      <option value="">Choose...</option>
+                      <option>Canada</option>
+                      <option>United States</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select a valid country.
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-6 mb-3">
+                    <label for="company">Company<span class="required">*</span></label>
+                    <input type="text" class="form-control" id="company" placeholder="" required="">
+                    <div class="invalid-feedback">
+                      Company is required.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 offset-md-6 mb-3">
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="work-for-company">
+                    <label class="custom-control-label" for="work-for-company">I work for a RELX Group company</label>
+                  </div>
+                </div>
+                <hr class="mb-2">
+                <div class="row">
+                  <div class="col-md-6 mb-2">
+                    <label for="industry">Industry</label>
+                    <select class="custom-select d-block w-100" id="industry">
+                      <option value="">Choose...</option>
+                      <option>Automobiles & Parts</option>
+                      <option>IT Service</option>
+                      <option>Hospitality</option>
+                    </select>
+                  </div>
+                  <div class="col-md-6 mb-2">
+                    <label for="title">Title<span class="required">*</span></label>
+                    <select class="custom-select d-block w-100" id="title" required="">
+                      <option value="">Choose...</option>
+                      <option>Assistant / Associate</option>
+                      <option>Manager</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select a valid title.
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-6 mb-2">
+                    <label for="phone">Phone</label>
+                    <input type="text" class="form-control" id="phone" placeholder="" value="">
+                    <div class="invalid-feedback">
+                      Valid phone is required.
+                    </div>
+                  </div>
+                  <div class="col-6 col-md-6 mb-2">
+                    <label for="experience" class="d-none d-sm-block">What is your experience with HPCC Systems</label>
+                    <label for="experience" class="d-block d-sm-none">Experience</label>
+                    <select class="custom-select d-block w-100" id="experience">
+                      <option value="">Choose...</option>
+                      <option>1-5 yrs</option>
+                      <option>6-10 yrs</option>
+                      <option>10+ yrs</option>
+                    </select>
+                  </div>
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block infobtn" type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="text-muted">
+      <div class="container">
+        <p class="text-center">Copyright &copy; 2018 LexisNexis. All Rights Reserved.</p>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.mask.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#phone').mask('(000) 000-0000');
+
+      });
+    </script>
+    <script src="http://cdn.intercoolerjs.org/intercooler-1.2.1.min.js"></script>
+  </body>
+</html>
