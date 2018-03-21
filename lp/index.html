@@ -30,14 +30,14 @@
                 <div class="row">
                   <div class="col-6 col-md-6 mb-2">
                     <label for="firstName">First name<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                    <input type="text" name="firstName" class="form-control" id="firstName" placeholder="" pattern=".{3,}" title="Minimum 3 characters" value="" required="">
                     <div class="invalid-feedback">
                       Valid first name is required.
                     </div>
                   </div>
                   <div class="col-6 col-md-6 mb-2">
                     <label for="lastName">Last name<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                    <input type="text" name="lastName" class="form-control" id="lastName" placeholder="" pattern=".{3,}" title="Minimum 3 characters" value="" required="">
                     <div class="invalid-feedback">
                       Valid last name is required.
                     </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="mb-2">
                   <label for="email">Email<span class="required">*</span></label>
-                  <input type="email" class="form-control" id="email" placeholder="you@example.com" required="">
+                  <input type="email" name="email" class="form-control" id="email" placeholder="you@example.com" required="">
                   <div class="invalid-feedback">
                     Please enter a valid email address.
                   </div>
@@ -54,7 +54,7 @@
                 <div class="row">
                   <div class="col-6 col-md-6 mb-2">
                     <label for="country">Country<span class="required">*</span></label>
-                    <select class="custom-select d-block w-100" id="country" required="">
+                    <select class="custom-select d-block w-100" id="country" name= "country" required="">
                       <option value="">Choose...</option>
                       <option>Canada</option>
                       <option>United States</option>
@@ -65,7 +65,7 @@
                   </div>
                   <div class="col-6 col-md-6 mb-3">
                     <label for="company">Company<span class="required">*</span></label>
-                    <input type="text" class="form-control" id="company" placeholder="" required="">
+                    <input type="text" name="company" class="form-control" id="company" pattern=".{4,}" title="Minimum 4 characters" placeholder="" required="">
                     <div class="invalid-feedback">
                       Company is required.
                     </div>
@@ -73,7 +73,7 @@
                 </div>
                 <div class="col-md-6 offset-md-6 mb-3">
                   <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="work-for-company">
+                    <input type="checkbox" name="workfor" class="custom-control-input" id="work-for-company">
                     <label class="custom-control-label" for="work-for-company">I work for a RELX Group company</label>
                   </div>
                 </div>
@@ -81,7 +81,7 @@
                 <div class="row">
                   <div class="col-md-6 mb-2">
                     <label for="industry">Industry</label>
-                    <select class="custom-select d-block w-100" id="industry">
+                    <select class="custom-select d-block w-100" name="industry" id="industry">
                       <option value="">Choose...</option>
                       <option>Automobiles & Parts</option>
                       <option>IT Service</option>
@@ -90,7 +90,7 @@
                   </div>
                   <div class="col-md-6 mb-2">
                     <label for="title">Title<span class="required">*</span></label>
-                    <select class="custom-select d-block w-100" id="title" required="">
+                    <select class="custom-select d-block w-100" name="title" id="title" required="">
                       <option value="">Choose...</option>
                       <option>Assistant / Associate</option>
                       <option>Manager</option>
@@ -101,7 +101,7 @@
                   </div>
                   <div class="col-6 col-md-6 mb-2">
                     <label for="phone">Phone</label>
-                    <input type="text" class="form-control" id="phone" placeholder="" value="">
+                    <input type="text" class="form-control" name="phone" id="phone" pattern=".{14,14}" title="Please enter a valid phone number" placeholder="" value="">
                     <div class="invalid-feedback">
                       Valid phone is required.
                     </div>
@@ -109,7 +109,7 @@
                   <div class="col-6 col-md-6 mb-2">
                     <label for="experience" class="d-none d-sm-block">What is your experience with HPCC Systems</label>
                     <label for="experience" class="d-block d-sm-none">Experience</label>
-                    <select class="custom-select d-block w-100" id="experience">
+                    <select class="custom-select d-block w-100" name="experience" id="experience">
                       <option value="">Choose...</option>
                       <option>1-5 yrs</option>
                       <option>6-10 yrs</option>
@@ -118,8 +118,11 @@
                   </div>
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block infobtn" type="submit">Submit</button>
+                <div class="text-center">
+                  <button class="btn btn-primary btn-lg" id="infobtn" type="submit">Submit</button>
+                </div>
               </form>
+              
             </div>
           </div>
         </div>
@@ -132,6 +135,11 @@
       </div>
     </footer>
 
+    <div class="messages alert alert-success text-center">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <span id="result"></span>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/js/jquery.mask.min.js"></script>
@@ -139,8 +147,33 @@
       $(document).ready(function(){
         $('#phone').mask('(000) 000-0000');
 
+
+        $("#info").submit(function(e) {
+
+            $.ajax({
+                   type: "POST",
+                   url: "submit.php",
+                   data: $("#info").serialize(),
+                   success: function(data)
+                   {
+                       //alert(data);
+                       SubmitMsg();
+                       $('#result').html('Thank you, ' + data + '. Your form was submitted.');
+                       $('#info').trigger("reset");
+                   }
+                 });
+
+            e.preventDefault();
+        });
+
+        function SubmitMsg(){
+          $(".messages").show();
+          setTimeout(function(){
+            $(".messages").hide(); 
+          }, 7000);
+        }
+
       });
     </script>
-    <script src="http://cdn.intercoolerjs.org/intercooler-1.2.1.min.js"></script>
   </body>
 </html>

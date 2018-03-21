@@ -54,3 +54,15 @@ footer p {
 .bg-light {
   background-color: #e8e8e8 !important;
 }
+
+.alert {
+    display: none;
+    border-radius: 0rem;
+}
+
+.messages{
+    position: fixed;
+    bottom: 0px;
+    left:0px;
+    width: 100%;
+}
