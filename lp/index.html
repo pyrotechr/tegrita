@@ -26,7 +26,7 @@
           <div class="row" style="position: relative; top: -90px">
             <div class="col-md-10 mx-auto order-md-1 info-form">
               <h4 class="mb-2">Subscibe to the Newsletter</h4>
-              <form id="info" method="POST" action="success.html">
+              <form id="info" method="POST">
                 <div class="row">
                   <div class="col-6 col-md-6 mb-2">
                     <label for="firstName">First name<span class="required">*</span></label>
@@ -150,7 +150,10 @@
 
         $("#info").submit(function(e) {
 
-            $.ajax({
+            /////////////////////////////
+            // SUBMITTING TO PHP w/ AJAX
+            /////////////////////////////
+            /*$.ajax({
                    type: "POST",
                    url: "submit.php",
                    data: $("#info").serialize(),
@@ -161,7 +164,20 @@
                        $('#result').html('Thank you, ' + data + '. Your form was submitted.');
                        $('#info').trigger("reset");
                    }
-                 });
+            });*/
+            
+            /////////////////////////////
+            // QUICK FIX FOR GITHUB PAGES
+            /////////////////////////////
+            var fName = $("#firstName").val()
+            $.ajax({
+                success: function()
+                   {
+                       SubmitMsg();
+                       $('#result').html('Thank you, ' + fName + '. Your form was submitted.');
+                       $('#info').trigger("reset");
+                   }
+            });
 
             e.preventDefault();
         });
